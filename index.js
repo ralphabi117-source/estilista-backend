@@ -29,7 +29,11 @@ app.post('/askStylist', async (req, res) => {
       - Armario: ${JSON.stringify(wardrobe, null, 2)}
     - Responde siempre en Markdown bien formateado.
   `;
-  
+  const systemPrompt = `
+    Eres "Pro", un estilista de moda de clase mundial...
+    - Responde siempre en Markdown bien formateado.
+    - CUANDO MUESTRES UNA PRENDA DEL ARMARIO, USA SIEMPRE EL FORMATO: "- Nombre de la prenda. [Foto](URL_de_la_imagen)"
+`;
   try {
     // Así se llama a la API de OpenAI
     const completion = await openai.chat.completions.create({
